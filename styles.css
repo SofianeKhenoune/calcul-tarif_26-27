@@ -267,7 +267,9 @@ h1 {
   margin-bottom: 6px;
 }
 
-.param-box input {
+.param-box input,
+.param-box select,
+.param-box select option {
   width: 100%;
   padding: 9px 10px;
   border: 1.5px solid #cfdbc8;
