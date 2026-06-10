@@ -4,8 +4,59 @@ const TARIFS={
 };
 
 const MAX_TIER_COUNT=3;
+const STORAGE_KEY='calculTarifsState_v1';
 
 const state={a:[false,false,false,false,false],c:[false,false,false,false,false]};
+
+function saveToStorage(){
+  const payload={
+    state,
+    form:{
+      acompteA:document.getElementById('acompteA').value,
+      nbmoisA:document.getElementById('nbmoisA').value,
+      acompteC:document.getElementById('acompteC').value,
+      nbmoisC:document.getElementById('nbmoisC').value
+    }
+  };
+
+  localStorage.setItem(STORAGE_KEY,JSON.stringify(payload));
+}
+
+function loadFromStorage(){
+  const raw=localStorage.getItem(STORAGE_KEY);
+  if(!raw){
+    return;
+  }
+
+  try{
+    const payload=JSON.parse(raw);
+    if(payload && payload.state){
+      if(Array.isArray(payload.state.a) && payload.state.a.length===5){
+        state.a=payload.state.a.map(Boolean);
+      }
+      if(Array.isArray(payload.state.c) && payload.state.c.length===5){
+        state.c=payload.state.c.map(Boolean);
+      }
+    }
+
+    if(payload && payload.form){
+      if(payload.form.acompteA!==undefined) document.getElementById('acompteA').value=payload.form.acompteA;
+      if(payload.form.nbmoisA!==undefined) document.getElementById('nbmoisA').value=payload.form.nbmoisA;
+      if(payload.form.acompteC!==undefined) document.getElementById('acompteC').value=payload.form.acompteC;
+      if(payload.form.nbmoisC!==undefined) document.getElementById('nbmoisC').value=payload.form.nbmoisC;
+    }
+  }catch(_err){
+    localStorage.removeItem(STORAGE_KEY);
+  }
+}
+
+function bindFormPersistence(){
+  ['acompteA','nbmoisA','acompteC','nbmoisC'].forEach(id=>{
+    const el=document.getElementById(id);
+    el.addEventListener('input',saveToStorage);
+    el.addEventListener('change',saveToStorage);
+  });
+}
 
 function buildGrid(){
   ['a','c'].forEach(type=>{
@@ -19,6 +70,7 @@ function buildGrid(){
       d.onclick=()=>{
         state[type][i]=!state[type][i];
         buildGrid();
+        saveToStorage();
       };
       col.appendChild(d);
 
@@ -142,6 +194,16 @@ function calculer(){
   document.getElementById('totalGlobal').textContent=fmt(restA+restC);
   document.getElementById('result').style.display='block';
   document.getElementById('result').scrollIntoView({behavior:'smooth',block:'start'});
+  saveToStorage();
+}
+
+function resetForm(){
+  document.getElementById('acompteA').value='50';
+  document.getElementById('nbmoisA').value='5';
+  document.getElementById('acompteC').value='50';
+  document.getElementById('nbmoisC').value='5';
+  document.getElementById('result').style.display='none';
+  saveToStorage();
 }
 
 function reset(){
@@ -149,7 +211,10 @@ function reset(){
   state.c=[false,false,false,false,false];
   document.getElementById('result').style.display='none';
   buildGrid();
+  saveToStorage();
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
+loadFromStorage();
+bindFormPersistence();
 buildGrid();
