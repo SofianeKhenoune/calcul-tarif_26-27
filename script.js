@@ -12,6 +12,7 @@ const TARIFS = {
 };
 
 const MAX_TIER_COUNT = 3;
+const MAX_MOIS = 6;
 const STORAGE_KEY = 'calculTarifsState_v1';
 
 const state = {
@@ -69,10 +70,12 @@ function bindFormPersistence() {
   ['acompteA', 'nbmoisA', 'acompteC', 'nbmoisC'].forEach((id) => {
     const el = document.getElementById(id);
     el.addEventListener('input', () => {
+      enforceFormLimits();
       saveToStorage();
       calculer(true);
     });
     el.addEventListener('change', () => {
+      enforceFormLimits();
       saveToStorage();
       calculer(true);
     });
@@ -83,6 +86,40 @@ function bindFormPersistence() {
       }
     });
   });
+}
+
+function enforceFormLimits() {
+  const { nbA, nbC, totalA, totalC } = computeTotals();
+
+  const nbMoisAInput = document.getElementById('nbmoisA');
+  const nbMoisCInput = document.getElementById('nbmoisC');
+  nbMoisAInput.max = String(MAX_MOIS);
+  nbMoisCInput.max = String(MAX_MOIS);
+  nbMoisAInput.value = String(getMoisValue('nbmoisA'));
+  nbMoisCInput.value = String(getMoisValue('nbmoisC'));
+
+  const acompteAInput = document.getElementById('acompteA');
+  const acompteCInput = document.getElementById('acompteC');
+
+  if (nbA > 0) {
+    const accA = getAcompteValue('acompteA');
+    acompteAInput.max = String(totalA);
+    if (accA > totalA) {
+      acompteAInput.value = String(totalA);
+    }
+  } else {
+    acompteAInput.removeAttribute('max');
+  }
+
+  if (nbC > 0) {
+    const accC = getAcompteValue('acompteC');
+    acompteCInput.max = String(totalC);
+    if (accC > totalC) {
+      acompteCInput.value = String(totalC);
+    }
+  } else {
+    acompteCInput.removeAttribute('max');
+  }
 }
 
 function buildGrid() {
@@ -98,6 +135,7 @@ function buildGrid() {
       d.onclick = () => {
         state[type][i] = !state[type][i];
         buildGrid();
+        enforceFormLimits();
         saveToStorage();
         calculer(true);
       };
@@ -159,7 +197,7 @@ function getMoisValue(id) {
   if (!Number.isFinite(v)) {
     return 1;
   }
-  return Math.min(12, Math.max(1, v));
+  return Math.min(MAX_MOIS, Math.max(1, v));
 }
 
 function getAcompteValue(id) {
@@ -192,6 +230,8 @@ function computeTotals() {
 }
 
 function calculer(silent) {
+  enforceFormLimits();
+
   const acompteA = getAcompteValue('acompteA');
   const acompteC = getAcompteValue('acompteC');
   const nbMoisA = getMoisValue('nbmoisA');
@@ -208,8 +248,8 @@ function calculer(silent) {
     return;
   }
 
-  const accA = nbA > 0 ? acompteA : 0;
-  const accC = nbC > 0 ? acompteC : 0;
+  const accA = nbA > 0 ? Math.min(acompteA, totalA) : 0;
+  const accC = nbC > 0 ? Math.min(acompteC, totalC) : 0;
   const restA = Math.max(0, totalA - accA);
   const restC = Math.max(0, totalC - accC);
   const totalMatiere = totalA + totalC;
