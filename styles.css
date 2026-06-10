@@ -106,11 +106,13 @@ h1 {
 }
 
 .params-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   gap: 10px;
+  align-items: stretch;
 }
 .param-box {
+  flex: 1;
+  min-width: 0;
   background: #fff;
   border-radius: 10px;
   padding: 10px;
@@ -138,24 +140,6 @@ h1 {
 .param-box input:focus {
   outline: none;
   border-color: #2e7d3e;
-}
-
-.btn-calc {
-  width: 100%;
-  padding: 15px;
-  background: #2e7d3e;
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  font-size: 1.05rem;
-  font-weight: 800;
-  cursor: pointer;
-  letter-spacing: 0.02em;
-  margin-bottom: 12px;
-  font-family: inherit;
-}
-.btn-calc:active {
-  background: #1a5c2e;
 }
 
 .btn-form-reset {
