@@ -8,11 +8,21 @@
     />
     <title>Infos pratiques</title>
     <link rel="stylesheet" href="styles.css" />
+    <script src="nav.js" defer></script>
   </head>
   <body>
     <header class="top-nav-wrap">
       <h1>Informations pratiques</h1>
-      <nav class="top-nav">
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Ouvrir le menu"
+        aria-controls="site-nav"
+        aria-expanded="false"
+      >
+        ☰
+      </button>
+      <nav class="top-nav" id="site-nav">
         <a class="top-link" href="index.html">Accueil</a>
         <a class="top-link" href="calculateur.html">Calculateur</a>
         <a class="top-link" href="documents.html">Documents</a>
