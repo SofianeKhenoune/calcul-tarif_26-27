@@ -76,6 +76,12 @@ function bindFormPersistence() {
       saveToStorage();
       calculer(true);
     });
+    el.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.keyCode === 13) {
+        event.preventDefault();
+        el.blur();
+      }
+    });
   });
 }
 
@@ -151,7 +157,7 @@ function cheques(restant, nbMois) {
 function getMoisValue(id) {
   const v = parseInt(document.getElementById(id).value, 10);
   if (!Number.isFinite(v)) {
-    return 5;
+    return 1;
   }
   return Math.min(12, Math.max(1, v));
 }
@@ -239,9 +245,9 @@ function calculer(silent) {
 
 function resetForm() {
   document.getElementById('acompteA').value = '50';
-  document.getElementById('nbmoisA').value = '5';
+  document.getElementById('nbmoisA').value = '1';
   document.getElementById('acompteC').value = '50';
-  document.getElementById('nbmoisC').value = '5';
+  document.getElementById('nbmoisC').value = '1';
   state.a = [false, false, false, false, false];
   state.c = [false, false, false, false, false];
   document.getElementById('result').style.display = 'none';
