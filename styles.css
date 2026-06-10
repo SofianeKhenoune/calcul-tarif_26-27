@@ -63,26 +63,6 @@ h1 {
   z-index: 20;
 }
 
-.menu-toggle {
-  display: none;
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  border: 1px solid #d6e4d5;
-  background: #ffffff;
-  color: #2a4b2e;
-  font-size: 1.25rem;
-  font-weight: 800;
-  line-height: 1;
-  cursor: pointer;
-  box-shadow: 0 8px 18px rgba(37, 73, 37, 0.13);
-}
-
-.menu-toggle:focus-visible {
-  outline: 3px solid rgba(47, 125, 50, 0.25);
-  outline-offset: 2px;
-}
-
 .top-nav {
   display: flex;
   gap: 8px;
@@ -589,64 +569,6 @@ h1 {
 
   .params-row {
     flex-direction: column;
-  }
-}
-
-@media (max-width: 760px) {
-  .top-nav-wrap {
-    margin-bottom: 12px;
-  }
-
-  h1 {
-    transition:
-      transform 0.24s ease,
-      opacity 0.24s ease;
-  }
-
-  body.nav-scrolled h1 {
-    transform: translateY(-6px) scale(0.97);
-    opacity: 0.75;
-  }
-
-  .top-nav {
-    transition:
-      max-height 0.25s ease,
-      opacity 0.2s ease,
-      margin-top 0.2s ease,
-      padding 0.2s ease;
-  }
-
-  body.nav-scrolled .top-nav {
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    pointer-events: none;
-    margin-top: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-    border-width: 0;
-  }
-
-  body.nav-scrolled .menu-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .top-nav-wrap.nav-open .top-nav {
-    max-height: 380px;
-    opacity: 1;
-    pointer-events: auto;
-    overflow: visible;
-    margin-top: 8px;
-    padding: 10px;
-    border-width: 1px;
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-
-  .top-nav-wrap.nav-open .top-link {
-    text-align: center;
   }
 }
 
