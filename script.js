@@ -242,8 +242,12 @@ function resetForm() {
   document.getElementById('nbmoisA').value = '5';
   document.getElementById('acompteC').value = '50';
   document.getElementById('nbmoisC').value = '5';
+  state.a = [false, false, false, false, false];
+  state.c = [false, false, false, false, false];
+  document.getElementById('result').style.display = 'none';
+  buildGrid();
   saveToStorage();
-  calculer(true);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function reset() {
