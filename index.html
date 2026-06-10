@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Tarifs 2025–2026</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<h1>Calcul tarifs 2025 – 2026</h1>
+
+<!-- Grille 5 enfants -->
+<div style="background:#fff;border-radius:10px;padding:12px;margin-bottom:10px">
+  <div class="grid" style="margin-bottom:0">
+    <div>
+      <div class="col-head col-arabe">Arabe</div>
+      <div id="col-a"></div>
+    </div>
+    <div>
+      <div class="col-head col-coran">Coran</div>
+      <div id="col-c"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Paramètres indépendants par matière -->
+<div class="subject-params">
+  <div class="subject-card subject-a">
+    <div class="subject-title">Paramètres Arabe</div>
+    <div class="params-row">
+      <div class="param-box">
+        <label>Acompte Arabe (€)</label>
+        <input type="number" id="acompteA" value="50" min="0" inputmode="numeric">
+      </div>
+      <div class="param-box">
+        <label>Échelonnement (mois)</label>
+        <input type="number" id="nbmoisA" value="5" min="1" max="12" inputmode="numeric">
+      </div>
+    </div>
+  </div>
+
+  <div class="subject-card subject-c">
+    <div class="subject-title">Paramètres Coran</div>
+    <div class="params-row">
+      <div class="param-box">
+        <label>Acompte Coran (€)</label>
+        <input type="number" id="acompteC" value="50" min="0" inputmode="numeric">
+      </div>
+      <div class="param-box">
+        <label>Échelonnement (mois)</label>
+        <input type="number" id="nbmoisC" value="5" min="1" max="12" inputmode="numeric">
+      </div>
+    </div>
+  </div>
+</div>
+
+<button class="btn-calc" onclick="calculer()">Calculer</button>
+
+<div id="result">
+  <div id="blocA" class="res-section"></div>
+  <div id="blocC" class="res-section"></div>
+  <div class="total-bar">
+    <span class="tl">Total à régler</span>
+    <span class="tv" id="totalGlobal"></span>
+  </div>
+  <button class="btn-reset" onclick="reset()">← Nouvelle inscription</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
