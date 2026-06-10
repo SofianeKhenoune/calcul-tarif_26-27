@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+    <title>Calculateur Tarifs 2026-2027</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="top-nav-wrap">
+      <h1>Calculateur Tarifs 2026 - 2027</h1>
+      <nav class="top-nav">
+        <a class="top-link" href="index.html">Accueil</a>
+        <a class="top-link active" href="calculateur.html">Calculateur</a>
+        <a class="top-link" href="documents.html">Documents</a>
+        <a class="top-link" href="reglement.html">Règlement</a>
+        <a class="top-link" href="infos-pratiques.html">Infos</a>
+      </nav>
+    </header>
+
+    <main class="page-section">
+      <div class="calc-shell">
+        <div class="grid-shell">
+          <div class="grid" style="margin-bottom: 0">
+            <div>
+              <div class="col-head col-arabe">Arabe</div>
+              <div id="col-a"></div>
+            </div>
+            <div>
+              <div class="col-head col-coran">Coran</div>
+              <div id="col-c"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="subject-params">
+          <div class="subject-card subject-a">
+            <div class="subject-title">Paramètres Arabe</div>
+            <div class="params-row">
+              <div class="param-box">
+                <label>Acompte Arabe (EUR)</label>
+                <input
+                  type="number"
+                  id="acompteA"
+                  value="50"
+                  min="0"
+                  inputmode="numeric"
+                />
+              </div>
+              <div class="param-box">
+                <label>Échelonnement (mois)</label>
+                <input
+                  type="number"
+                  id="nbmoisA"
+                  value="1"
+                  min="1"
+                  max="12"
+                  inputmode="numeric"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="subject-card subject-c">
+            <div class="subject-title">Paramètres Coran</div>
+            <div class="params-row">
+              <div class="param-box">
+                <label>Acompte Coran (EUR)</label>
+                <input
+                  type="number"
+                  id="acompteC"
+                  value="50"
+                  min="0"
+                  inputmode="numeric"
+                />
+              </div>
+              <div class="param-box">
+                <label>Échelonnement (mois)</label>
+                <input
+                  type="number"
+                  id="nbmoisC"
+                  value="1"
+                  min="1"
+                  max="12"
+                  inputmode="numeric"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-form-reset" onclick="resetForm()">
+          Réinitialiser le formulaire
+        </button>
+
+        <div id="result">
+          <div id="blocA" class="res-section"></div>
+          <div id="blocC" class="res-section"></div>
+          <div class="total-bar">
+            <span class="tl">Total des 2 matières</span>
+            <span class="tv" id="totalGlobal"></span>
+          </div>
+          <button class="btn-reset" onclick="reset()">
+            Nouvelle inscription
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

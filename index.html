@@ -6,106 +6,51 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no"
     />
-    <title>Tarifs 2026–2027</title>
+    <title>Espace Parents 2026-2027</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1>Calcul tarifs 2026 – 2027</h1>
+    <header class="top-nav-wrap">
+      <h1>Espace Parents 2026 - 2027</h1>
+      <nav class="top-nav">
+        <a class="top-link active" href="index.html">Accueil</a>
+        <a class="top-link" href="calculateur.html">Calculateur</a>
+        <a class="top-link" href="documents.html">Documents</a>
+        <a class="top-link" href="reglement.html">Règlement</a>
+        <a class="top-link" href="infos-pratiques.html">Infos</a>
+      </nav>
+    </header>
 
-    <!-- Grille 5 enfants -->
-    <div
-      style="
-        background: #fff;
-        border-radius: 10px;
-        padding: 12px;
-        margin-bottom: 10px;
-      "
-    >
-      <div class="grid" style="margin-bottom: 0">
-        <div>
-          <div class="col-head col-arabe">Arabe</div>
-          <div id="col-a"></div>
+    <main class="page-section">
+      <section class="parents-space">
+        <h2>Bienvenue</h2>
+        <p class="parents-intro">
+          Cet espace vous permet de simuler les tarifs, télécharger les fiches
+          d'inscription et consulter le règlement intérieur.
+        </p>
+        <div class="parents-grid">
+          <article class="parents-card">
+            <h3>Calculateur de tarifs</h3>
+            <p>
+              Simulez rapidement le coût par matière et le total annuel pour
+              votre famille.
+            </p>
+            <a class="doc-btn" href="calculateur.html">Ouvrir le calculateur</a>
+          </article>
+          <article class="parents-card">
+            <h3>Documents à télécharger</h3>
+            <p>
+              Accédez aux fiches d'inscription et aux documents administratifs.
+            </p>
+            <a class="doc-btn" href="documents.html">Voir les documents</a>
+          </article>
+          <article class="parents-card">
+            <h3>Informations utiles</h3>
+            <p>Consultez les consignes, pièces à fournir et contacts utiles.</p>
+            <a class="doc-btn" href="infos-pratiques.html">Lire les infos</a>
+          </article>
         </div>
-        <div>
-          <div class="col-head col-coran">Coran</div>
-          <div id="col-c"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Paramètres indépendants par matière -->
-    <div class="subject-params">
-      <div class="subject-card subject-a">
-        <div class="subject-title">Paramètres Arabe</div>
-        <div class="params-row">
-          <div class="param-box">
-            <label>Acompte Arabe (€)</label>
-            <input
-              type="number"
-              id="acompteA"
-              value="50"
-              min="0"
-              inputmode="numeric"
-            />
-          </div>
-          <div class="param-box">
-            <label>Échelonnement (mois)</label>
-            <input
-              type="number"
-              id="nbmoisA"
-              value="1"
-              min="1"
-              max="12"
-              inputmode="numeric"
-            />
-          </div>
-        </div>
-      </div>
-
-      <div class="subject-card subject-c">
-        <div class="subject-title">Paramètres Coran</div>
-        <div class="params-row">
-          <div class="param-box">
-            <label>Acompte Coran (€)</label>
-            <input
-              type="number"
-              id="acompteC"
-              value="50"
-              min="0"
-              inputmode="numeric"
-            />
-          </div>
-          <div class="param-box">
-            <label>Échelonnement (mois)</label>
-            <input
-              type="number"
-              id="nbmoisC"
-              value="1"
-              min="1"
-              max="12"
-              inputmode="numeric"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <button class="btn-form-reset" onclick="resetForm()">
-      Réinitialiser le formulaire
-    </button>
-
-    <div id="result">
-      <div id="blocA" class="res-section"></div>
-      <div id="blocC" class="res-section"></div>
-      <div class="total-bar">
-        <span class="tl">Total des 2 matières</span>
-        <span class="tv" id="totalGlobal"></span>
-      </div>
-      <button class="btn-reset" onclick="reset()">
-        ← Nouvelle inscription
-      </button>
-    </div>
-
-    <script src="script.js"></script>
+      </section>
+    </main>
   </body>
 </html>

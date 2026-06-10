@@ -1,0 +1,21 @@
+ASSOCIATION - FICHE D'INSCRIPTION ARABE 2026-2027
+
+1) Informations eleve
+- Nom :
+- Prenom :
+- Date de naissance :
+- Niveau scolaire :
+
+2) Informations responsables
+- Nom et prenom parent 1 :
+- Telephone parent 1 :
+- Email parent 1 :
+- Nom et prenom parent 2 :
+- Telephone parent 2 :
+- Email parent 2 :
+
+3) Engagement
+Je soussigne(e) confirme l'exactitude des informations et m'engage a respecter le reglement interieur.
+
+Signature parent :
+Date :
